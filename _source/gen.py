@@ -89,6 +89,13 @@ FREE_EVENT = {
     "offers": {"@type": "Offer", "url": FREE["reg"], "price": "0", "priceCurrency": "INR", "availability": "https://schema.org/InStock"},
 }
 
+VIDEO = {"@context": "https://schema.org", "@type": "VideoObject",
+         "name": "Surya Shakti free yoga class in Pallipalayam: participants share their experience",
+         "description": "Participants share their experience of the free Surya Shakti yoga class by Isha volunteers in Pallipalayam, near Erode.",
+         "thumbnailUrl": DOMAIN + "/videos/surya-shakti-free-yoga-class-pallipalayam.jpg",
+         "contentUrl": DOMAIN + "/videos/surya-shakti-free-yoga-class-pallipalayam.mp4",
+         "uploadDate": "2026-11-10", "duration": "PT1M26S", "inLanguage": "ta"}
+
 if FREE["active"]:
     FREE_BLOCK = f"""
 <div class="event">
@@ -438,6 +445,13 @@ def build():
 </div></section>
 
 <section class="alt"><div class="wrap">
+<h2>Watch: Surya Shakti free yoga class, participants' experiences</h2>
+<video controls preload="none" playsinline poster="videos/surya-shakti-free-yoga-class-pallipalayam.jpg" width="360" height="640" style="width:100%;max-width:360px;border-radius:14px;display:block;margin:0 0 12px;background:#fde3c8" aria-label="Surya Shakti free yoga class in Pallipalayam, participants share their experience">
+<source src="videos/surya-shakti-free-yoga-class-pallipalayam.mp4" type="video/mp4"></video>
+<p class="note">Free Surya Shakti yoga class by Isha volunteers, Pallipalayam.</p>
+</div></section>
+
+<section><div class="wrap">
 <h2>What people feel after the class</h2>
 <p>Participants of Surya Shakti say:</p>
 <div class="grid">
@@ -447,7 +461,7 @@ def build():
 <p class="note" style="margin-top:12px">Experiences shared by participants. Results differ from person to person. This class is not a medical treatment; if you have a health condition, please speak to your doctor and tell the volunteers when you register.</p>
 </div></section>
 
-<section><div class="wrap">
+<section class="alt"><div class="wrap">
 <h2>Free yoga class near Erode, Kumarapalayam and Veppadai</h2>
 <p>The class is held at the Isha Yoga Pallipalayam centre, just across the Cauvery from Erode and about 5 km from Erode bus stand. People come from Erode city, Kumarapalayam (Komarapalayam), Veppadai, Bhavani, Tiruchengode and Sankagiri. See <a href="yoga-classes-erode.html">yoga classes in Erode</a> and <a href="yoga-classes-kumarapalayam-veppadai-bhavani.html">nearby areas</a>.</p>
 <h2>After the free class</h2>
@@ -460,12 +474,12 @@ def build():
 </div>
 </div></section>
 
-<section class="alt"><div class="wrap">
+<section><div class="wrap">
 <h2>Free yoga class: questions</h2>
 {faq_html(free_faq)}
 </div></section>
 """,
-         schemas=((BUSINESS, FREE_EVENT, faq_schema(free_faq)) if FREE["active"] else (BUSINESS, faq_schema(free_faq))))
+         schemas=((BUSINESS, FREE_EVENT, VIDEO, faq_schema(free_faq)) if FREE["active"] else (BUSINESS, VIDEO, faq_schema(free_faq))))
 
     # TAMIL
     ta_faq = [
