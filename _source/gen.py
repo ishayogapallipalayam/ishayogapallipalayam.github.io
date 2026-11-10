@@ -12,8 +12,24 @@ EMBED = "https://www.google.com/maps?q=Isha+Yoga+Pallipalayam&output=embed"
 POSTER = "images/isha-yoga-pallipalayam-program-poster.jpg"
 POSTER_SM = "images/isha-yoga-pallipalayam-program-poster-600.jpg"
 
+# ---- FREE CLASS: edit only this block when a new free class comes up ----
+FREE = {
+    "active": True,                      # False = shows "next class to be announced", no Event schema
+    "date_en": "Sunday, 15 November 2026",
+    "short_en": "15 Nov",
+    "date_ta": "நவம்பர் 15 (ஞாயிற்றுக்கிழமை)",
+    "time_en": "7:00 to 9:00 am",
+    "time_ta": "காலை 7 முதல் 9 மணி வரை",
+    "start": "2026-11-15T07:00:00+05:30",
+    "end": "2026-11-15T09:00:00+05:30",
+    "reg": "https://isha.co/ss-pallipalayam",
+    "lastmod": "2026-11-10",
+}
+FREE_PAGE = "free-yoga-class-pallipalayam.html"
+
 NAV = [
     ("index.html", "Home"),
+    (FREE_PAGE, "Free Class"),
     ("isha-yoga-programs.html", "Programs"),
     ("yoga-classes-erode.html", "Yoga in Erode"),
     ("yoga-classes-kumarapalayam-veppadai-bhavani.html", "Nearby Areas"),
@@ -53,6 +69,60 @@ EVENT = {
     "organizer": {"@type": "Organization", "name": NAME, "url": DOMAIN + "/"},
     "offers": {"@type": "Offer", "url": REG, "availability": "https://schema.org/InStock", "validFrom": "2026-11-01T00:00:00+05:30"},
 }
+
+
+FREE_EVENT = {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Free Yoga Class (Surya Shakti) in Pallipalayam",
+    "description": "Free yoga class by Isha volunteers in Pallipalayam, near Erode. Open to beginners. Registration is free.",
+    "startDate": FREE["start"],
+    "endDate": FREE["end"],
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "inLanguage": "ta",
+    "isAccessibleForFree": True,
+    "image": [DOMAIN + "/" + POSTER],
+    "location": {"@type": "Place", "name": "Pallipalayam",
+                 "address": {"@type": "PostalAddress", "addressLocality": "Pallipalayam", "addressRegion": "Tamil Nadu", "addressCountry": "IN"}},
+    "organizer": {"@type": "Organization", "name": NAME, "url": DOMAIN + "/"},
+    "offers": {"@type": "Offer", "url": FREE["reg"], "price": "0", "priceCurrency": "INR", "availability": "https://schema.org/InStock"},
+}
+
+if FREE["active"]:
+    FREE_BLOCK = f"""
+<div class="event">
+<span class="upnext">Free yoga class</span>
+<h3>Free Yoga Class (Surya Shakti) in Pallipalayam</h3>
+<dl>
+<dt>Date</dt><dd>{FREE["date_en"]}</dd>
+<dt>Time</dt><dd>{FREE["time_en"]}</dd>
+<dt>Place</dt><dd>Pallipalayam (exact venue shared at registration)</dd>
+<dt>Fee</dt><dd>Free</dd>
+</dl>
+<div class="btns"><a class="btn btn-primary" href="{FREE["reg"]}">Register free</a><a class="btn btn-ghost" href="tel:+91{PH1}">Call {PH1}</a></div>
+</div>"""
+    FREE_BLOCK_TA = f"""
+<div class="event">
+<dl>
+<dt>தேதி</dt><dd>{FREE["date_ta"]}</dd>
+<dt>நேரம்</dt><dd>{FREE["time_ta"]}</dd>
+<dt>கட்டணம்</dt><dd>முற்றிலும் இலவசம்</dd>
+</dl>
+<div class="btns"><a class="btn btn-primary" href="{FREE["reg"]}">இலவசமாகப் பதிவு செய்ய</a><a class="btn btn-ghost" href="tel:+91{PH1}">அழைக்க</a></div>
+</div>"""
+    FREE_TITLE = f"Free Yoga Class in Pallipalayam | Surya Shakti, {FREE['short_en']}"
+    FREE_BANNER = f"""<section><div class="wrap"><h2>Free yoga class in Pallipalayam: {FREE["short_en"]}</h2>
+<p>A free Surya Shakti yoga class is on {FREE["date_en"]}, {FREE["time_en"]}. <a href="{FREE_PAGE}">See details and register free</a>.</p></div></section>"""
+else:
+    FREE_BLOCK = f"""
+<div class="event"><span class="upnext">Free yoga class</span>
+<h3>Next free yoga class: to be announced</h3>
+<p>Free yoga classes are held from time to time in Pallipalayam. Call or WhatsApp us to be told when the next one is.</p>
+<div class="btns"><a class="btn btn-wa" href="https://wa.me/{WA}?text={WA_TEXT}">WhatsApp us</a><a class="btn btn-ghost" href="tel:+91{PH1}">Call {PH1}</a></div></div>"""
+    FREE_BLOCK_TA = """<div class="event"><p>அடுத்த இலவச யோகா வகுப்பு தேதி விரைவில் அறிவிக்கப்படும். அறிய அழைக்கவும்.</p></div>"""
+    FREE_TITLE = "Free Yoga Class in Pallipalayam | Surya Shakti"
+    FREE_BANNER = ""
 
 
 def faq_schema(qas):
@@ -130,7 +200,7 @@ PROGRAM_CARDS = f"""
 <div class="card"><span class="tag">7 days</span><h3>Isha Yoga Program (Inner Engineering)</h3>
 <p>The Isha Yoga program, known as Inner Engineering in English, is designed by Sadhguru. It includes initiation into <b>Shambhavi Mahamudra Kriya</b>, a 21-minute practice you can continue at home every day. Held in Tamil and in English at Pallipalayam.</p></div>
 <div class="card"><span class="tag">Free</span><h3>Surya Kriya Yoga Class</h3>
-<p>Surya Kriya is a classical hatha yoga practice from Isha. Free Surya Kriya classes are held from time to time at Pallipalayam and are open to beginners. Call or WhatsApp to know the next date.</p></div>
+<p>Surya Kriya is a classical hatha yoga practice from Isha. Free Surya Kriya classes are held from time to time at Pallipalayam and are open to beginners. <a href="{FREE_PAGE}">Free class details</a>.</p></div>
 <div class="card"><span class="tag">Events</span><h3>Devi Pooja and special events</h3>
 <p>Devi Pooja, satsangs and special days such as Mahashivratri, Guru Purnima and International Yoga Day are held for the local community. Follow our Google Maps listing for announcements.</p></div>
 </div>"""
@@ -179,6 +249,7 @@ def build():
 <img class="poster" src="{POSTER_SM}" width="600" height="600" alt="Isha Yoga program poster, Pallipalayam, 25 November to 1 December" fetchpriority="high">
 </div></div>
 
+{FREE_BANNER}
 <section><div class="wrap">
 <h2>Next Isha Yoga program in Pallipalayam</h2>
 {EVENT_BLOCK}
@@ -344,6 +415,58 @@ def build():
 """,
          schemas=(BUSINESS,))
 
+    # FREE CLASS
+    free_faq = [
+        ("Is there a free yoga class in Pallipalayam?",
+         (f"Yes. A free yoga class (Surya Shakti) is on {FREE['date_en']}, {FREE['time_en']}, in Pallipalayam. Registration is free at isha.co/ss-pallipalayam." if FREE["active"]
+          else "Free yoga classes are held from time to time in Pallipalayam. Call or WhatsApp us to know the next date.")),
+        ("Is the class really free?", "Yes. The class is offered free of cost by Isha volunteers. There is no fee to register or attend."),
+        ("Can beginners join?", "Yes. No yoga experience is needed. Students, working professionals, homemakers and senior citizens can join."),
+        ("Is there a free yoga class near Erode?", "Pallipalayam is just across the Cauvery from Erode, about 5 km from Erode bus stand, so people from Erode, Kumarapalayam, Veppadai and Bhavani attend."),
+        ("How do I register?", f"Register online at isha.co/ss-pallipalayam, or call {PH1}." if FREE["active"] else f"Call {PH1} or {PH2}, or WhatsApp us."),
+    ]
+    page(FREE_PAGE,
+         FREE_TITLE,
+         f"Free yoga class (Surya Shakti) in Pallipalayam, near Erode: {FREE['date_en']}, {FREE['time_en']}. Open to beginners. Register free." if FREE["active"]
+         else "Free yoga classes in Pallipalayam, near Erode, by Isha volunteers. Open to beginners. Call or WhatsApp for the next free class date.",
+         "Free Yoga Class in Pallipalayam (Surya Shakti)",
+         f"""
+<section><div class="wrap">
+<h1>{{{{H1}}}}</h1>
+<p class="lead">Looking for a free yoga class in Pallipalayam or free yoga classes near Erode? Isha volunteers hold free Surya Shakti yoga classes in Pallipalayam, open to beginners.</p>
+{FREE_BLOCK}
+</div></section>
+
+<section class="alt"><div class="wrap">
+<h2>What people feel after the class</h2>
+<p>Participants of Surya Shakti say:</p>
+<div class="grid">
+<div class="card"><p>&ldquo;I feel the flexibility of my body.&rdquo;</p></div>
+<div class="card"><p>&ldquo;I feel very active.&rdquo;</p></div>
+</div>
+<p class="note" style="margin-top:12px">Experiences shared by participants. Results differ from person to person. This class is not a medical treatment; if you have a health condition, please speak to your doctor and tell the volunteers when you register.</p>
+</div></section>
+
+<section><div class="wrap">
+<h2>Free yoga class near Erode, Kumarapalayam and Veppadai</h2>
+<p>The class is held in Pallipalayam, just across the Cauvery from Erode and about 5 km from Erode bus stand. People come from Erode city, Kumarapalayam (Komarapalayam), Veppadai, Bhavani, Tiruchengode and Sankagiri. See <a href="yoga-classes-erode.html">yoga classes in Erode</a> and <a href="yoga-classes-kumarapalayam-veppadai-bhavani.html">nearby areas</a>.</p>
+<h2>After the free class</h2>
+<p>If you like the class, you can join the 7-day <a href="isha-yoga-programs.html">Isha Yoga program (Inner Engineering)</a>, which includes initiation into Shambhavi Mahamudra Kriya.</p>
+<div class="tamil ta" lang="ta">
+<h3>பள்ளிபாளையத்தில் இலவச யோகா வகுப்பு: சூரிய சக்தி</h3>
+<p>பள்ளிபாளையம், ஈரோடு, குமாரபாளையம், வெப்படை பகுதி மக்களுக்காக ஈஷா தன்னார்வத் தொண்டர்கள் நடத்தும் முற்றிலும் இலவச யோகா வகுப்பு (சூரிய சக்தி). ஆரம்பநிலையில் உள்ளவர்களும் கலந்துகொள்ளலாம்.</p>
+{FREE_BLOCK_TA}
+<p>தொடர்புக்கு: <a href="tel:+91{PH1}">{PH1}</a>, <a href="tel:+91{PH2}">{PH2}</a></p>
+</div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+<h2>Free yoga class: questions</h2>
+{faq_html(free_faq)}
+</div></section>
+""",
+         schemas=((BUSINESS, FREE_EVENT, faq_schema(free_faq)) if FREE["active"] else (BUSINESS, faq_schema(free_faq))))
+
     # TAMIL
     ta_faq = [
         ("பள்ளிபாளையத்தில் ஈஷா யோகா வகுப்பு எங்கு நடைபெறுகிறது?",
@@ -431,7 +554,7 @@ def build():
         f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
         for h in pages:
             loc = DOMAIN + "/" + ("" if h == "index.html" else h)
-            f.write(f"  <url><loc>{loc}</loc><lastmod>2026-11-02</lastmod></url>\n")
+            f.write(f"  <url><loc>{loc}</loc><lastmod>{FREE['lastmod'] if h in (FREE_PAGE, 'index.html') else '2026-11-02'}</lastmod></url>\n")
         f.write("</urlset>\n")
     with open(os.path.join(OUT, "robots.txt"), "w") as f:
         f.write(f"User-agent: *\nAllow: /\n\nSitemap: {DOMAIN}/sitemap.xml\n")

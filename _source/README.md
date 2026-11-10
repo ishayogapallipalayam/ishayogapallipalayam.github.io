@@ -9,3 +9,7 @@ DOMAIN=https://ishayogapallipalayam.github.io python3 _source/gen.py .
 ```
 
 Update the program dates in `gen.py` (EVENT and EVENT_BLOCK) after each program.
+
+## Free yoga class page
+
+Edit only the `FREE` block at the top of `gen.py` (date, time, registration link, `active`). Set `"active": False` after the class to show "next class to be announced". Then rebuild with the command above; the page, home banner, title, description, Event schema and sitemap all update.
