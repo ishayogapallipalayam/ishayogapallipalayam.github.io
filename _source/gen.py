@@ -83,7 +83,7 @@ FREE_EVENT = {
     "inLanguage": "ta",
     "isAccessibleForFree": True,
     "image": [DOMAIN + "/" + POSTER],
-    "location": {"@type": "Place", "name": "Pallipalayam",
+    "location": {"@type": "Place", "name": "Isha Yoga Pallipalayam centre",
                  "address": {"@type": "PostalAddress", "addressLocality": "Pallipalayam", "addressRegion": "Tamil Nadu", "addressCountry": "IN"}},
     "organizer": {"@type": "Organization", "name": NAME, "url": DOMAIN + "/"},
     "offers": {"@type": "Offer", "url": FREE["reg"], "price": "0", "priceCurrency": "INR", "availability": "https://schema.org/InStock"},
@@ -97,7 +97,7 @@ if FREE["active"]:
 <dl>
 <dt>Date</dt><dd>{FREE["date_en"]}</dd>
 <dt>Time</dt><dd>{FREE["time_en"]}</dd>
-<dt>Place</dt><dd>Pallipalayam (exact venue shared at registration)</dd>
+<dt>Place</dt><dd>Isha Yoga Pallipalayam centre, Pallipalayam</dd>
 <dt>Fee</dt><dd>Free</dd>
 </dl>
 <div class="btns"><a class="btn btn-primary" href="{FREE["reg"]}">Register free</a><a class="btn btn-ghost" href="tel:+91{PH1}">Call {PH1}</a></div>
@@ -418,7 +418,7 @@ def build():
     # FREE CLASS
     free_faq = [
         ("Is there a free yoga class in Pallipalayam?",
-         (f"Yes. A free yoga class (Surya Shakti) is on {FREE['date_en']}, {FREE['time_en']}, in Pallipalayam. Registration is free at isha.co/ss-pallipalayam." if FREE["active"]
+         (f"Yes. A free yoga class (Surya Shakti) is on {FREE['date_en']}, {FREE['time_en']}, at the Isha Yoga Pallipalayam centre. Registration is free at isha.co/ss-pallipalayam." if FREE["active"]
           else "Free yoga classes are held from time to time in Pallipalayam. Call or WhatsApp us to know the next date.")),
         ("Is the class really free?", "Yes. The class is offered free of cost by Isha volunteers. There is no fee to register or attend."),
         ("Can beginners join?", "Yes. No yoga experience is needed. Students, working professionals, homemakers and senior citizens can join."),
@@ -449,7 +449,7 @@ def build():
 
 <section><div class="wrap">
 <h2>Free yoga class near Erode, Kumarapalayam and Veppadai</h2>
-<p>The class is held in Pallipalayam, just across the Cauvery from Erode and about 5 km from Erode bus stand. People come from Erode city, Kumarapalayam (Komarapalayam), Veppadai, Bhavani, Tiruchengode and Sankagiri. See <a href="yoga-classes-erode.html">yoga classes in Erode</a> and <a href="yoga-classes-kumarapalayam-veppadai-bhavani.html">nearby areas</a>.</p>
+<p>The class is held at the Isha Yoga Pallipalayam centre, just across the Cauvery from Erode and about 5 km from Erode bus stand. People come from Erode city, Kumarapalayam (Komarapalayam), Veppadai, Bhavani, Tiruchengode and Sankagiri. See <a href="yoga-classes-erode.html">yoga classes in Erode</a> and <a href="yoga-classes-kumarapalayam-veppadai-bhavani.html">nearby areas</a>.</p>
 <h2>After the free class</h2>
 <p>If you like the class, you can join the 7-day <a href="isha-yoga-programs.html">Isha Yoga program (Inner Engineering)</a>, which includes initiation into Shambhavi Mahamudra Kriya.</p>
 <div class="tamil ta" lang="ta">
