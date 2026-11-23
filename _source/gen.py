@@ -147,6 +147,10 @@ def page(fname, title, desc, h1, body, schemas=(), lang="en"):
 <html lang="{lang}">
 <head>
 <meta charset="utf-8">
+<!-- Google tag -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GTM-KGZGX4NC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','GTM-KGZGX4NC');
+document.addEventListener('click',function(e){{var a=e.target.closest&&e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';var t=h.indexOf('tel:')===0?'call':h.indexOf('wa.me')>-1?'whatsapp':h.indexOf('isha.co/')>-1?'register':'';if(t)gtag('event','generate_lead',{{method:t,link_url:h}});}});</script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title}</title>
 <meta name="description" content="{desc}">
