@@ -167,3 +167,7 @@ footer a{color:var(--muted)}
   .mbar .w{background:var(--wa);color:#fff}
   .mbar .i{color:var(--green)}
 }
+
+.suben{font-family:system-ui,sans-serif;font-size:15px;color:var(--muted);margin:-4px 0 12px;letter-spacing:.01em}
+.upd{font-size:13.5px;color:var(--muted);margin-top:14px}
+footer .fh{font-family:var(--serif);font-weight:500;color:var(--ink);font-size:17px;margin:0 0 8px}
