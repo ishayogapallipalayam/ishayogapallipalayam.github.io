@@ -36,7 +36,7 @@
         if (window.gtag) gtag('event', 'generate_lead', { method: 'form', centre: f.centre.value });
       };
       if (D.endpoint) {
-        fetch(D.endpoint, { method: 'POST', mode: 'no-cors', body: fd }).then(done, done);
+        fetch(D.endpoint, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(fd) }).then(done, done);
       } else { done(); }
     });
   });
